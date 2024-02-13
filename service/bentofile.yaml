@@ -1,0 +1,10 @@
+service: "service:cirrhosis_status_service"
+labels:
+  owner: "Pollo"
+include:
+  - "*.py"
+python:
+  packages:
+   - "scikit-learn"
+   - "pandas"
+   - "xgboost"
