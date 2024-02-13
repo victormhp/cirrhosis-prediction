@@ -1,0 +1,289 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage{preamble}
+
+%%------------------------------- document-------------------------------------
+
+\begin{document}
+
+%%------------------------------- cover page ----------------------------------
+
+\begin{titlepage}
+\center
+
+\vspace{-15mm}
+{\large \textbf{\textsc{\school}}}\\
+
+\vfill
+
+{\Large \textbf{\projtitle}}\\[8mm]
+{\large \textbf{\subtitle}}\\[28mm]
+{\Large \textbf{\projauthor}}\\
+
+\vfill
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=52mm]{figures/cf.png}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=102mm]{figures/cf-ml.png}
+\end{figure}
+
+\vfill
+
+\text{12 de febrero de 2024}
+
+\end{titlepage}
+
+
+%%------------------------------- table of contents ---------------------------
+
+\tableofcontents
+\thispagestyle{empty}
+
+%%------------------------------- chapter ------------------------------------
+
+\chapter*{Descripción del Proyecto}
+\addcontentsline{toc}{chapter}{Descripción del Proyecto}
+
+\pagestyle{fancy}
+\pagenumbering{arabic}\setcounter{page}{1}
+
+\section*{Objetivos}
+\addcontentsline{toc}{section}{Objetivos}
+
+\begin{itemize}
+    \item \textbf{Mejorar la precisión del diagnóstico:} Identificar con precisión el estado del paciente, lo que puede ayudar a los médicos a tomar mejores decisiones sobre el tratamiento y la gestión de la enfermedad.
+    \item \textbf{Identificar factores predictivos clave:} Revelar qué características o factores clínicos tienen mayor influencia en la progresión de la cirrosis y en los resultados de los pacientes.
+\end{itemize}
+
+\section*{Contexto}
+\addcontentsline{toc}{section}{Contexto}
+
+La cirrosis es una enfermedad hepática crónica que puede tener consecuencias graves para la salud de los pacientes. Es importante desarrollar modelos de aprendizaje automático que puedan predecir los resultados de la cirrosis y ayudar a los médicos en el manejo clínico de la enfermedad.
+
+\section*{Impacto}
+\addcontentsline{toc}{section}{Impacto}
+
+El desarrollo de un modelo preciso de predicción de cirrosis puede tener un impacto significativo en la práctica clínica y en los resultados de los pacientes. Al mejorar la capacidad de diagnosticar y predecir la progresión de la enfermedad, se pueden tomar medidas preventivas y de tratamiento de manera más efectiva, lo que puede mejorar la calidad de vida y la supervivencia de los pacientes.
+
+\section*{Alcance}
+\addcontentsline{toc}{section}{Alcance}
+
+Desarrollo y la evaluación de un modelo de aprendizaje automático para predecir los resultados de la cirrosis utilizando datos clínicos y biomédicos. Se explorarán diversas técnicas de modelado y se evaluará la precisión y la generalización del modelo utilizando conjuntos de datos independientes.
+
+\section*{Métricas del negocio a considerar}
+\addcontentsline{toc}{section}{Métricas del negocio a considerar}
+
+\begin{itemize}
+    \item Precisión diagnóstica del modelo.
+    \item Sensibilidad y especificidad en la detección de casos de cirrosis.
+    \item Impacto en la toma de decisiones clínicas y en el manejo de la enfermedad.
+    \item Mejora en los resultados de los pacientes, como la supervivencia y la calidad de vida.
+\end{itemize}
+
+\section*{Stakeholders}
+\addcontentsline{toc}{section}{Stakeholders}
+
+\begin{itemize}
+    \item Médicos y profesionales de la salud involucrados en el manejo clínico de la cirrosis.
+    \item Pacientes con cirrosis y sus familias.
+    \item Investigadores y científicos en campos de hepatología y bioinformática.
+\end{itemize}
+
+%%------------------------------- chapter ------------------------------------
+
+\chapter*{Estructura del Repositorio}
+\addcontentsline{toc}{chapter}{Estructura del Repositorio}
+
+\dirtree{%
+    .1 /.
+    .2 docs/.
+    .3 figures/.
+    .4 cf-ml.png.
+    .4 cf.png.
+    .3 docs.pdf.
+    .3 docs.tex.
+    .3 Makefile.
+    .3 preamble.sty.
+    .3 refs.bib.
+    .2 models/.
+    .3 inference-pipeline.joblib.
+    .2 notebooks/.
+    .3 images/.
+    .4 cirrhosis.png.
+    .3 1\_data\_preparation.ipynb.
+    .3 2\_model\_training.ipynb.
+    .3 service\_tester.ipynb.
+    .2 service/.
+    .3 bentofile.yaml.
+    .3 cirrhosis\_status\_runner.py.
+    .3 download\_bentoml\_model.py.
+    .3 service.py.
+    .2 src/.
+    .3 Makefile.
+    .3 status\_prediction\_flow.py.
+    .3 utils/.
+    .4 training\_pipeline.py.
+    .4 validate\_model.py.
+    .2 data/.
+    .3 cirrhosis.csv.
+    .3 cirrhosis-profile.html.
+    .2 models/.
+    .2 README.md.
+    .2 requirements.txt.
+}
+
+\begin{itemize}
+    \item \textbf{data}: Archivos .csv que contienen los datos de entrenamiento y prueba, además de un html con un análisis exploratorio básico obtenido por medio de la biblioteca ydata-profiling.
+    \item \textbf{docs}: Documentación en formato .tex y .pdf.
+    \item \textbf{notebooks}: Jupyter notebooks con el procesamiento de datos y la construcción de los modelos.
+    \item \textbf{service}: Servicio de despliegue con BentoML.
+    \item \textbf{src}: Construcción de pipelines de Metaflow.
+    \item \textbf{models}: Modelos de machine learning.
+    \item \textbf{README.md}: Archivo de markdown con indicaciones para la instalación, ejecución y despliegue del modelo.
+    \item \textbf{requirements.txt}: Archivo para el listado e instalación de dependencias.
+\end{itemize}
+
+%%------------------------------- chapter ------------------------------------
+
+\chapter*{Dependencias}
+\addcontentsline{toc}{chapter}{Dependencias}
+
+El proyecto utiliza Python 3.11 y las siguientes dependencias:
+
+\begin{itemize}
+    \item numpy
+    \item pandas
+    \item ydata-profiling
+    \item matlplotlib
+    \item seaborn
+    \item scikit-learn
+    \item xgboost
+    \item metaflow
+    \item mlflow
+    \item bentoml
+\end{itemize}
+
+En el directorio de raíz del proyecto hay un archivo requirements.txt, donde se encuentran listadas todas dependencias, se instalan ejecutando del siguiente comando:
+
+\texttt{pip install -r requirements.txt}
+
+
+%%------------------------------- chapter ------------------------------------
+
+\chapter*{Procesamiento de Datos}
+\addcontentsline{toc}{chapter}{Procesamiento de Datos}
+
+En el notebook \texttt{1-data-preparation.ipynb} se encuentran todos los procesos relacionadas a la preparación de los datos.
+
+\begin{itemize}
+    \item Imputación de datos faltantes duplicados.
+    \item Imputación de datos faltantes vacíos.
+    \item Generación de nuevas características:
+        \begin{itemize}
+            \item \textbf{DiagnosisDate}: La característica 'Age' representa la edad de los pacientes en días. Restando 'NDays' a 'Age' obtenemos la fecha del diagnóstico.
+            \item \textbf{AgeYears}: Convertir la edad del paciente (dada en días) en años.
+        \end{itemize}
+    \item División de features entre numéricas y categóricas.
+    \item Pipeline de transformación para características categóricas:
+        \begin{itemize}
+            \item \textbf{OneHot-Encoder}: Se aplica a la feature 'Edema' ya que presenta tres valores posibles.
+            \item \textbf{Ordinal-Encoder}: Se aplica a la feature 'Stage' ya que sus valores tienen un orden establecido.
+            \item \textbf{Binary-Encoder}: Se aplica a las features ['Drug', 'Sex', 'Ascites', 'Hepatomegaly', 'Spiders'] ya que presentan dos valores posibles.
+        \end{itemize}
+    \item Label-Encoder a la variable objetivo, ya que sus valores son categóricos (C, CL, D).
+\end{itemize}
+
+
+%%------------------------------- chapter ------------------------------------
+
+\chapter*{Modelado}
+\addcontentsline{toc}{chapter}{Modelado}
+
+Para abordar este problema de clasificación multiclase, se han seleccionado dos modelos de aprendizaje automático ampliamente utilizados:
+
+\begin{itemize}
+    \item \textbf{XGBoost Classifier}: Algoritmo de gradient boosting que destaca por su eficiencia y capacidad para manejar conjuntos de datos complejos.
+    \item \textbf{Random Forest Classifier}: Algoritmo de ensemble que combina múltiples árboles de decisión para obtener predicciones más precisas y robustas.
+\end{itemize}
+
+
+\section*{Evaluación del Rendimiento}
+\addcontentsline{toc}{section}{Evaluación del Rendimiento}
+El rendimiento de cada modelo se evalúa utilizando la métrica de pérdida logarítmica (log loss) a través de la validación cruzada estratificada repetida (RepeatedStratifiedKFold). Esta técnica asegura una evaluación rigurosa y confiable del rendimiento de cada modelo.
+
+\section*{Implementación del Proceso de Modelado}
+\addcontentsline{toc}{section}{Implementación del Proceso de Modelado}
+El proceso de modelado se implementa utilizando la función validate\_models, que acepta una lista de modelos y el conjunto de features (X) junto con las etiquetas (y). Se entrena cada modelo utilizando la estrategia de validación cruzada especificada y calcula el rendimiento promedio en los conjuntos de entrenamiento y validación.
+
+El rendimiento de cada modelo se presenta en un DataFrame que incluye el nombre del modelo, la puntuación promedio en el conjunto de entrenamiento y la puntuación promedio en el conjunto de validación.
+
+\textbf{XGBoost Classifier} demostró ser más sólido y consistente para nuestro caso de uso.
+
+%%------------------------------- chapter ------------------------------------
+
+\chapter*{Evaluación}
+\addcontentsline{toc}{chapter}{Evaluación}
+
+Para evaluar el rendimiento de los modelos, se utilizaron varias métricas y técnicas de evaluación.
+
+\section*{Log Loss}
+\addcontentsline{toc}{section}{Log Loss}
+El log loss cuantifica la diferencia entre las predicciones del modelo y las etiquetas reales. Un valor más bajo indica un mejor rendimiento del modelo, donde valores cercanos a cero representan una predicción perfecta.
+
+\section*{Accuracy}
+\addcontentsline{toc}{section}{Accuracy}
+Proporción de predicciones correctas realizadas por el modelo sobre el total de predicciones. Una precisión más alta indica un mejor rendimiento del modelo.
+
+\section*{Matriz de Confusión}
+\addcontentsline{toc}{section}{Matriz de Confusión}
+La matriz de confusión es una tabla que muestra el número de predicciones correctas e incorrectas realizadas por el modelo para cada clase. Permite visualizar el rendimiento del modelo en términos de falsos positivos, falsos negativos, verdaderos positivos y verdaderos negativos para cada clase.
+
+%%------------------------------- chapter ------------------------------------
+
+\chapter*{Despliegue}
+\addcontentsline{toc}{chapter}{Despliegue}
+
+Para el despliegue se utiliza una combinación de Metaflow, MLflow y BentoML. Estas herramientas facilitan la construcción un pipeline de entrenamiento y despliegue de modelos de manera eficiente y escalable.
+
+\section*{Construcción del Pipeline con Metaflow y MLflow}
+\addcontentsline{toc}{section}{Construcción del Pipeline con Metaflow y MLflow}
+Se define un flujo de trabajo que abarca desde la carga de datos hasta la evaluación del modelo entrenado. MLflow se utiliza para el seguimiento y la gestión de experimentos, lo que permite registrar métricas, parámetros y artefactos asociados con cada ejecución del modelo.
+
+\section*{Despliegue del Modelo con BentoML}
+\addcontentsline{toc}{section}{Despliegue del Modelo con BentoML}
+BentoML empaqueta el modelo entrenado como un servicio web de Python. Este facilita la creación de una API REST para el modelo, lo que permite realizar inferencias en tiempo real sobre nuevos datos a través de solicitudes HTTP.
+
+\begin{itemize}
+    \item Descarga del modelo: \texttt{download\_bento\_model.py}
+    \item Creación de servicio para la entrega de predicciones
+    \begin{itemize}
+        \item \texttt{cirrhosis\_status\_runner.py}
+        \item \texttt{service.py}
+    \end{itemize}
+    \item Bundle bentoml: \texttt{bentoml build}. Este construirá el bundle y le asignará una id.
+    \item Crear imagen de docker: \texttt{bentoml containerize <bundle-id>}
+    \item Correr imagen de docker: \texttt{docker run --rm -p 3000:3000 <bundle-id>}
+\end{itemize}
+
+
+\section*{Interacción con el Modelo a través de la API}
+\addcontentsline{toc}{section}{Interacción con el Modelo a través de la API}
+Los usuarios pueden realizar llamadas a la API con nuevos datos y recibir predicciones del modelo en respuesta, lo que permite una integración sencilla y flexible del modelo en diversos sistemas y aplicaciones.
+
+Puede ver una prueba en el notebook \texttt{service\_tester.ipynb}
+
+%%------------------------------- Bibliography --------------------------------
+
+\addcontentsline{toc}{chapter}{Referencias}
+
+\bibliographystyle{plain}
+\bibliography{refs}
+\cite{playground-series-s3e26}
+
+%%------------------------------- the end. ------------------------------------
+
+\end{document}

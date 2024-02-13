@@ -1,0 +1,93 @@
+%%------------------------------- preamble ------------------------------------
+
+\usepackage[spanish]{babel}       % language PT 
+\usepackage[utf8]{inputenc}       % accents
+\usepackage[T1]{fontenc}          % PS fonts
+\usepackage{newtxtext,newtxmath}  % do not use CM fonts
+\usepackage{amsmath}              % multi-line and other mathematical statements
+\usepackage{setspace}             % setting the spacing between lines
+\usepackage{graphicx}             % go far beyond what the graphics package
+\usepackage[normalem]{ulem}       % various types of underlining
+\usepackage{caption}              % rotating captions, sideways captions, etc.
+\usepackage{float}                % tables and figures in the multi-column environment 
+\usepackage{subcaption}           % for subfigures and the like
+\usepackage{longtable}            % tables that continue to the next page
+\usepackage{multirow}             % tabular cells spanning multiple rows
+\usepackage[table]{xcolor}        % driver-independent color extensions
+\usepackage{cite}                 % references
+\usepackage{url}                  % url for references  
+\usepackage{chicago}              % a bibliography style
+\usepackage{dirtree}
+\usepackage[breakable]{tcolorbox}
+
+%% document dimensions
+\usepackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm,headheight=6mm,footskip=12mm]{geometry}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1ex}
+
+%% headers & footers
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\fancyhf{}
+\rhead{\small{\emph{\projtitle, \projauthor}}}
+\rfoot{\small{\thepage\ / \pageref{LastPage}}}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+%% colors
+\usepackage{color}
+\definecolor{engineering}{rgb}{0,0,0}
+\definecolor{cloudwhite}{cmyk}{0,0,0,0.025}
+
+%% source-code listings
+\usepackage{listings}
+\lstset{
+ language=python,
+ basicstyle=\footnotesize\ttfamily,
+ keywordstyle=\bfseries,
+ numbers=left,                      % where to put the line-numbers
+ numberstyle=\scriptsize\texttt,    % the size of the fonts that are used for the line-numbers
+ stepnumber=1,                      % the step between two line-numbers. If it's 1 each line will be numbered
+ numbersep=8pt,                     % how far the line-numbers are from the code
+ frame=tb,
+ float=htb,
+ aboveskip=8mm,
+ belowskip=4mm,
+ backgroundcolor=\color{cloudwhite},
+ showspaces=false,                  % show spaces adding particular underscores
+ showstringspaces=false,            % underline spaces within strings
+ showtabs=false,                    % show tabs within strings adding particular underscores
+ tabsize=2,                         % sets default tabsize to 2 spaces
+ captionpos=b,                      % sets the caption-position to bottom
+ breaklines=true,                   % sets automatic line breaking
+ breakatwhitespace=false,           % sets if automatic breaks should only happen at whitespace
+ escapeinside={\%*}{*)},            % if you want to add a comment within your code
+ morekeywords={*,var,template,new}  % if you want to add more keywords to the set
+}
+
+%% hyperreferences (HREF, URL)
+\usepackage{hyperref}
+\hypersetup{
+    plainpages=false, 
+    pdfpagelayout=SinglePage,
+    bookmarksopen=false,
+    bookmarksnumbered=true,
+    breaklinks=true,
+    linktocpage,
+    colorlinks=true,
+    linkcolor=engineering,
+    urlcolor=engineering,
+    filecolor=engineering,
+    citecolor=engineering,
+    allcolors=engineering
+}
+
+%% path to the figures directory
+\graphicspath{{figures/}}
+
+%% macros, to be updated as needed
+\newcommand{\school}{Bootcamp de Machine Learning - Código Facilito}
+\newcommand{\projtitle}{Predicción del Estado de Pacientes con Cirrosis Hepática}
+\newcommand{\subtitle}{18 características clínicas para predecir el estado de la cirrosis hepática}
+\newcommand{\projauthor}{Víctor Alberto Martinez Hernandez}
